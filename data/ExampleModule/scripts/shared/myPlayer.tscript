@@ -1,0 +1,231 @@
+//=====================================================
+// DATABLOCKS DU JOUEUR
+//=====================================================
+datablock PlayerData(MyPlayerData)
+{
+   shapeAsset = "Prototyping:Playerbot_shape";
+
+   mass = 90;
+   drag = 4;
+   maxdrag = 0.4;
+
+   // marche (style CS : le strafe va aussi vite que l'avant)
+   maxForwardSpeed = 9;
+   maxBackwardSpeed = 9;
+   maxSideSpeed = 9;
+   runForce = 9000;
+
+   jumpForce = 747;
+   jumpDelay = 15;
+   airControl = 0.3;
+
+   boundingBox = "1.2 1.2 2.3";
+   maxStepHeight = 0.75;
+   runSurfaceAngle = 70;
+   jumpSurfaceAngle = 80;
+
+   recoverDelay = 9;
+   recoverRunForceScale = 1.2;
+   minImpactSpeed = 45;
+
+   cameraMaxDist = 4;
+   cameraMinDist = 2;
+};
+
+// même joueur, mais plus rapide (utilisé quand tu maintiens Shift)
+datablock PlayerData(MyPlayerSprintData : MyPlayerData)
+{
+   maxForwardSpeed = 14;
+   maxBackwardSpeed = 14;
+   maxSideSpeed = 14;
+   runForce = 12000;
+};
+
+//=====================================================
+// APPARITION (inchangé)
+//=====================================================
+function spawnTPS()
+{
+   %client = ClientGroup.getObject(0);
+   if (!isObject(%client))
+   {
+      error("spawnTPS: lance d'abord un niveau");
+      return;
+   }
+
+   %player = new Player()
+   {
+      dataBlock = MyPlayerData;
+   };
+   MissionCleanup.add(%player);
+
+   %player.setTransform(%client.camera.getTransform());
+   %client.player = %player;
+   %client.setControlObject(%player);
+   %client.setFirstPerson(false);
+}
+
+//=====================================================
+// SERVEUR : sprint et réglages (le serveur décide)
+//=====================================================
+function serverCmdSprint(%client, %on)
+{
+   if (!isObject(%client.player))
+      return;
+   if (%on)
+      %client.player.setDataBlock(MyPlayerSprintData);
+   else
+      %client.player.setDataBlock(MyPlayerData);
+}
+
+function serverCmdTunerSet(%client, %db, %field, %value)
+{
+   if (%db !$= "MyPlayerData" && %db !$= "MyPlayerSprintData")
+      return;
+   %obj = nameToID(%db);
+   if (!isObject(%obj))
+      return;
+   %obj.setFieldValue(%field, %value);
+   %obj.reloadOnLocalClient();
+}
+
+//=====================================================
+// CLIENT : touche Shift = sprint
+//=====================================================
+function mtSprint(%val)
+{
+   commandToServer('Sprint', %val ? 1 : 0);
+}
+moveMap.bind(keyboard, "lshift", mtSprint);
+
+//=====================================================
+// CLIENT : panneau de réglages (F8)
+//=====================================================
+$MT::count = 0;
+function mtAdd(%label, %db, %field)
+{
+   $MT::label[$MT::count] = %label;
+   $MT::db[$MT::count] = %db;
+   $MT::field[$MT::count] = %field;
+   $MT::count++;
+}
+
+// liste des réglages affichés : (nom affiché, datablock, propriété)
+mtAdd("Vitesse avant",        "MyPlayerData",       "maxForwardSpeed");
+mtAdd("Vitesse arriere",      "MyPlayerData",       "maxBackwardSpeed");
+mtAdd("Vitesse strafe",       "MyPlayerData",       "maxSideSpeed");
+mtAdd("Acceleration (force)", "MyPlayerData",       "runForce");
+mtAdd("Frottement (arret)",   "MyPlayerData",       "drag");
+mtAdd("Masse",                "MyPlayerData",       "mass");
+mtAdd("Force de saut",        "MyPlayerData",       "jumpForce");
+mtAdd("Delai de saut",        "MyPlayerData",       "jumpDelay");
+mtAdd("Controle en l'air",    "MyPlayerData",       "airControl");
+mtAdd("Hauteur de marche",    "MyPlayerData",       "maxStepHeight");
+mtAdd("Sprint avant",         "MyPlayerSprintData", "maxForwardSpeed");
+mtAdd("Sprint arriere",       "MyPlayerSprintData", "maxBackwardSpeed");
+mtAdd("Sprint strafe",        "MyPlayerSprintData", "maxSideSpeed");
+mtAdd("Sprint acceleration",  "MyPlayerSprintData", "runForce");
+mtAdd("Camera distance max",  "MyPlayerData",       "cameraMaxDist");
+mtAdd("Camera distance min",  "MyPlayerData",       "cameraMinDist");
+
+function mtApply(%i)
+{
+   %value = $MT::edit[%i].getText();
+   commandToServer('TunerSet', $MT::db[%i], $MT::field[%i], %value);
+}
+
+function mtApplyAll()
+{
+   for (%i = 0; %i < $MT::count; %i++)
+      mtApply(%i);
+}
+
+function buildMoveTuner()
+{
+   if (isObject(MoveTunerGui))
+      MoveTunerGui.delete();
+
+   %height = 90 + $MT::count * 26;
+
+   %gui = new GuiControl(MoveTunerGui)
+   {
+      profile = "GuiDefaultProfile";
+      position = "0 0";
+      extent = "1920 1080";
+      horizSizing = "width";
+      vertSizing = "height";
+   };
+
+   %win = new GuiWindowCtrl()
+   {
+      profile = "GuiWindowProfile";
+      text = "Reglages deplacement (F8 pour fermer, Entree pour valider)";
+      position = "20 20";
+      extent = "400" SPC %height;
+      canClose = false;
+      canMinimize = false;
+      canMaximize = false;
+      resizeWidth = false;
+      resizeHeight = false;
+   };
+   %gui.add(%win);
+
+   for (%i = 0; %i < $MT::count; %i++)
+   {
+      %y = 35 + %i * 26;
+
+      %lbl = new GuiTextCtrl()
+      {
+         profile = "GuiTextProfile";
+         text = $MT::label[%i];
+         position = "10" SPC %y;
+         extent = "230 22";
+      };
+      %win.add(%lbl);
+
+      %obj = nameToID($MT::db[%i]);
+      %current = isObject(%obj) ? %obj.getFieldValue($MT::field[%i]) : "?";
+
+      %edit = new GuiTextEditCtrl()
+      {
+         profile = "GuiTextEditProfile";
+         text = %current;
+         position = "250" SPC %y;
+         extent = "120 22";
+      };
+      %edit.altCommand = "mtApply(" @ %i @ ");";
+      %win.add(%edit);
+      $MT::edit[%i] = %edit;
+   }
+
+   %btn = new GuiButtonCtrl()
+   {
+      profile = "GuiButtonProfile";
+      text = "Tout appliquer";
+      position = "10" SPC (%height - 50);
+      extent = "170 28";
+      command = "mtApplyAll();";
+   };
+   %win.add(%btn);
+}
+
+function toggleMoveTuner(%val)
+{
+   if (!%val)
+      return;
+
+   if (!isObject(MoveTunerGui))
+      buildMoveTuner();
+
+   if (MoveTunerGui.isAwake())
+   {
+      Canvas.popDialog(MoveTunerGui);
+      Canvas.cursorOff();
+   }
+   else
+   {
+      Canvas.pushDialog(MoveTunerGui);
+      Canvas.cursorOn();
+   }
+}
+GlobalActionMap.bind(keyboard, "f8", toggleMoveTuner);

@@ -1,0 +1,237 @@
+//-------------------------- 10/28/2026 -- 03:30:59 -----
+Processor Init:
+   Processor: Intel(R) Core(TM) i5-14600KF
+      MMX detected
+      SSE detected
+      SSE2 detected
+      SSE3 detected
+      SSE3ex detected 
+      SSE4.1 detected
+      SSE4.2 detected
+      AVX detected
+      AVX2 detected
+   MultiCore CPU detected [14 cores, 20 logical]
+ 
+Math Init:
+   Installing Standard C extensions
+   Installing ISA extensions
+   Installing Assembly extensions
+ 
+Initializing platform...
+Input Init:
+
+Done
+SFX Init:
+   Null device found
+   OpenAL Device Found: Output Device OpenAL Soft on Casque pour téléphone (CORSAIR VOID ELITE Wireless Gaming Headset) (Default)
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter In 1 (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter In 4 (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter In 2 (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter In 3 (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on FxSound Speakers (FxSound Audio Enhancer) 
+   OpenAL Device Found: Output Device OpenAL Soft on Haut-parleurs (Steam Streaming Speakers) 
+   OpenAL Device Found: Output Device OpenAL Soft on Haut-parleurs (Steam Streaming Microphone) 
+   OpenAL Device Found: Output Device OpenAL Soft on VA279HG (2- NVIDIA High Definition Audio) 
+   OpenAL Device Found: Output Device OpenAL Soft on MOTIV Mix Virtual Input (Shure Virtual Audio) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter AUX Input (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on Haut-parleurs (THX Spatial) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter VAIO3 Input (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on Audio numérique (SPDIF) (2- High Definition Audio Device) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter In 5 (VB-Audio Voicemeeter VAIO) 
+   OpenAL Device Found: Output Device OpenAL Soft on Voicemeeter Input (VB-Audio Voicemeeter VAIO) 
+
+DebugDrawer Enabled!
+GFX Init:
+   Null device found
+   OpenGL device found
+   Direct 3D (version 11.x) device found
+
+Console trace disabled.
+
+Initializing game [1.0.0.0] [Engine Version:4.0.3]
+
+SFXSystem::_createBuffer - No sound device initialized!!
+SFXProfile::_createBuffer(buttonClick_profile_track) - Device _createBuffer from stream also failed for 'core/gui/sounds/buttonClick.wav'
+SFXProfile::_preloadBuffer(buttonClick_profile_track) - _createBuffer() returned null for 'core/gui/sounds/buttonClick.wav'
+SFXProfile(buttonClick_profile_track)::onAdd: The preload failed!
+SFXSystem::_createBuffer - No sound device initialized!!
+SFXProfile::_createBuffer(buttonHover_profile_track) - Device _createBuffer from stream also failed for 'core/gui/sounds/buttonHover.wav'
+SFXProfile::_preloadBuffer(buttonHover_profile_track) - _createBuffer() returned null for 'core/gui/sounds/buttonHover.wav'
+SFXProfile(buttonHover_profile_track)::onAdd: The preload failed!
+
+--------- Parsing Arguments ---------
+
+SFX Device Info:
+|------------------------------------------------
+| Device:       OpenAL Soft on Casque pour téléphone (CORSAIR VOID ELITE Wireless Gaming Headset)
+| OpenAL:       1.1
+| Sample Rate:  48000 Hz
+| Bit Depth:    32-bit
+| Max Voices:   16
+|------------------------------------------------
+| Capabilities:
+|   Hot Reconnect:     Yes
+|   Disconnect Detect: Yes
+|   Device Clock:      Yes
+|   Multi-Listener:    No
+|   Float32 Playback:  Yes
+|   Multi-Channel:     Yes
+|   Spatialize:        Yes
+|   HRTF:              Yes
+|     Status:  Disabled
+|     Profiles: 0
+|   EFX Reverb:        Yes
+|     EQ:          Yes
+|     Compressor:  Yes
+|     Echo:        Yes
+|     Chorus:      Yes
+|     Distortion:  Yes
+|     Flanger:     Yes
+|     Filters:     Yes
+|     Effect Slots: 64
+|     Sends/Source: 4
+|------------------------------------------------
+| ALC Extensions:
+|   ALC_ENUMERATE_ALL_EXT
+|   ALC_ENUMERATION_EXT
+|   ALC_EXT_CAPTURE
+|   ALC_EXT_debug
+|   ALC_EXT_DEDICATED
+|   ALC_EXT_direct_context
+|   ALC_EXT_disconnect
+|   ALC_EXT_EFX
+|   ALC_EXT_thread_local_context
+|   ALC_SOFT_device_clock
+|   ALC_SOFT_HRTF
+|   ALC_SOFT_loopback
+|   ALC_SOFT_loopback_bformat
+|   ALC_SOFT_output_limiter
+|   ALC_SOFT_output_mode
+|   ALC_SOFT_pause_device
+|   ALC_SOFT_reopen_device
+|   ALC_SOFT_system_events
+|------------------------------------------------
+
+Attempting to create GFX device: NVIDIA GeForce RTX 5060 Ti (D3D11) []
+Device created, setting adapter and enumerating modes
+Hardware occlusion query detected: Yes
+WMIVideoInfo: DxDiag initialized
+Initializing GFXCardProfiler (Direct3D11)
+   o Chipset : 'NVIDIA'
+   o Card    : 'NVIDIA GeForce RTX 5060 Ti'
+   o Version : ''
+   o VRAM    : 7892 MB
+   - Scanning card capabilities...
+GFXCardProfiler (Direct3D11) - Setting capability 'maxTextureWidth' to 16384.
+GFXCardProfiler (Direct3D11) - Setting capability 'maxTextureHeight' to 16384.
+GFXCardProfiler (Direct3D11) - Setting capability 'maxTextureSize' to 16384.
+   - Loading card profiles...
+--------------
+Attempting to set resolution to "1920 1080 0 32 120 0"
+Accepted Mode: 
+--Resolution     : 1920 1080
+--Screen Mode    : Borderless
+--Bits Per Pixel : 32
+--Refresh Rate   : 120
+--Anit-Aliasing Type     : None
+--------------
+UDP initialized on ipv4 IP:0.0.0.0:62703
+Asset Manager: Encountered asset Id 'ToolsModule:Images_btn_Palette_d_image' in asset file 'tools/VPathEditor/GUI/Images/Images_btn_Palette_h_image.asset.taml' but it conflicts with existing asset Id in asset file 'tools/VPathEditor/GUI/Images/Images_btn_Palette_d_image.asset.taml'.
+Asset Manager: Failed to acquire asset Id 'ToolsModule:rollout_plusminus_header_darker_image' as it does not exist.
+Asset Manager: Failed to acquire asset Id 'ToolsModule:rollout_plusminus_header_darker_image' as it does not exist.
+Asset Manager: Encountered asset Id 'UI:menu_image' in asset file 'data/UI/images/menu_side_background_image.asset.taml' but it conflicts with existing asset Id in asset file 'data/UI/images/menu_image.asset.taml'.
+
+--------- Initializing Directory: scripts ---------
+
+--------- Initializing game: Client Scripts ---------
+loadTerrainMaterialAssetFallback could not find fallback asset !
+ShapeAsset::initializeAsset (noshape) could not find !
+
+Initializing Lighting Systems
+RenderParticleMgr::_initShader - failed to locate shader ParticlesShaderData!
+RenderParticleMgr::_initShader - failed to locate shader OffscreenParticleCompositeShaderData!
+--------------
+Attempting to set resolution to "1920 1080 0 32 120 0"
+Accepted Mode: 
+--Resolution     : 1920 1080
+--Screen Mode    : Borderless
+--Bits Per Pixel : 32
+--Refresh Rate   : 120
+--Anit-Aliasing Type     : None
+--------------
+Graphics quality settings have been auto detected.
+
+sfxStartup...
+   Provider: OpenAL
+   Device: OpenAL Soft on Casque pour téléphone (CORSAIR VOID ELITE Wireless Gaming Headset)
+   Hardware: No
+   Max Buffers: 255
+ 
+Missing file: data/UI/scripts/defaultKeybinds.tscript!
+MaterialAsset: Unable to find the Material materialEd_justAlphaMaterial
+MaterialAsset: Unable to find the Material materialEd_previewMaterial
+MaterialAsset: Unable to find the Material WaterBasicShader
+MaterialAsset: Unable to find the Material UnderWaterShader
+MaterialAsset: Unable to find the Material UnderWaterBasicShader
+Activating Input...
+Engine initialized...
+Window focus status changed: focus: 1
+Exporting server prefs
+Unable to open file 'home:/preferences/serverPrefs.tscript for writing.
+
+--------- Initializing game: Server Scripts ---------
+Exporting server prefs to C:/Users/khyli/Documentss/serverPrefs.tscript
+Unable to open file 'home:/preferences/serverPrefs.tscript for writing.
+Starting multiplayer mode
+UDP initialized on ipv4 IP:0.0.0.0:28000
+Warning: shape asset Prototyping:TorusPrimitive_shape collision detail 0 (Collision-1) bounds exceed that of shape.
+*** LOADING MISSION: Example Level
+*** Stage 1 load
+*** Stage 2 load
+===================================
+ExampleGameMode - Scene is loaded
+*** Stage 3 load
+*** Mission loaded
+Connect request from: IP:0.0.0.0
+Connection established 18873
+CADD: 18874 local
+<<<< saving server datablock cache >>>>
+    <<<< sending CRC to client: 797843461 >>>>
+*** Sending mission load to client: ExampleModule:ExampleLevel
+onServerMessage: 
+onServerMessage: 
+onServerMessage: 
+*** New Mission: Example Level
+*** Phase 1: Download Datablocks & Targets
+% - PostFX Manager - Executing data/ExampleModule/levels/ExampleLevel.postfxpreset.tscript
+<<<< client cache CRC: 797843461 >>>>
+<<<< comparing CRC codes: s:797843461 c:797843461 >>>>
+<<<< cache CRC codes match, datablocks will be loaded from local cache. >>>>
+Sending heartbeat to master server [IP:108.61.193.195:5664]
+<<<< client will load datablocks from a cache >>>>
+    <<<< skipping datablock transmission >>>>
+<<<< Loading Datablocks From Cache >>>>
+Warning: shape asset Prototyping:TorusPrimitive_shape collision detail 1 (Collision-1) bounds exceed that of shape.
+<<<< Finished Loading Datablocks From Cache >>>>
+*** Phase 2: Download Ghost Objects
+[Material::mapMaterial] - Cannot map unnamed Material
+Ghost Always objects received.
+Window focus status changed: focus: 0
+  Using background sleep time: 200
+Client Replication Startup has Happened!
+*** Phase 3: Mission Lighting
+Mission lighting done
+data/ExampleModule/scripts/shared/myPlayer.tscript (99): Unable to find object: 'moveMap' attempting to call function 'bind'
+Received info request from a master server [IP:108.61.193.195:5664].
+clientCmdSyncClock: Unknown command.
+onServerMessage: 
+  +- a: Welcome to the Torque demo app Visitor.
+*** Initial Control Object
+GuiBitmapBorderCtrl: Could not construct bitmap array for profile 'GuiModelessDialogProfile'
+*** Control Object Changed
+Window focus status changed: focus: 1
+*** Control Object Changed
+Unable to open file 'home:/preferences/clientPrefs.tscript for writing.
+Exporting client prefs to C:/Users/khyli/Documentss/clientPrefs.tscript
+Unable to open file 'home:/preferences/clientPrefs.tscript for writing.
+Exporting server prefs to C:/Users/khyli/Documentss/serverPrefs.tscript
